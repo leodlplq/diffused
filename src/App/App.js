@@ -4,6 +4,7 @@ import Time from '../utils/Time'
 import Camera from './Camera'
 import Renderer from './Renderer'
 import Debug from '../utils/Debug'
+import World from './World/World'
 
 let instance = null
 
@@ -27,6 +28,9 @@ export default class App {
     this.camera = new Camera()
     this.renderer = new Renderer()
 
+    //world
+    this.world = new World()
+
     //events
     this.sizes.on('resize', () => {
       this.resize()
@@ -42,6 +46,8 @@ export default class App {
   }
 
   update() {
+    this.camera.update()
     this.renderer.update()
+    this.world.update()
   }
 }
