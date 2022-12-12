@@ -1,3 +1,6 @@
-import "./style.css";
+import './style.css'
 
-console.log("hello world");
+import App from './App/App'
+
+const _canvas = document.querySelector('.webgl')
+const app = new App(_canvas)
