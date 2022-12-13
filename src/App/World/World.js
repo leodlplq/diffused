@@ -25,5 +25,6 @@ export default class World {
   update() {
     if (this.cube) this.cube.update()
     if (this.pyramid) this.pyramid.update()
+    if (this.stump) this.stump.update()
   }
 }

@@ -34,6 +34,8 @@ export default class Pyramid {
 
     this.mesh.castShadow = true
     this.mesh.receiveShadow = true
+    //scale
+    this.mesh.scale.set(0.903, 1.5, 0.5)
     //position
     this.mesh.position.y += 0.5
     this.mesh.position.x = -1.76
@@ -54,6 +56,15 @@ export default class Pyramid {
         .min(-5)
         .max(5)
         .step(0.01)
+
+      this.debugFolder
+        .add(this.mesh.scale, 'y')
+        .min(0.5)
+        .max(4)
+        .name('height')
+        .onChange(() => (this.mesh.position.y = this.mesh.scale.y / 2))
+      this.debugFolder.add(this.mesh.scale, 'x').min(0.5).max(4).name('width')
+      this.debugFolder.add(this.mesh.scale, 'z').min(0.5).max(4).name('depth')
     }
   }
 

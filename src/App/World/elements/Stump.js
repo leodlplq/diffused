@@ -56,6 +56,6 @@ export default class Stump {
     }
   }
   update() {
-    this.model.rotation.y = Math.sin()
+    this.model.rotation.y = Math.sin(this.time.elapsed * 0.0012 + 0.25)
   }
 }

@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+
 import App from '../App'
 
 export default class Environment {
@@ -13,7 +14,22 @@ export default class Environment {
     }
 
     //Setup
+    this.setAmbientLight()
     this.setSunlight()
+  }
+
+  setAmbientLight() {
+    this.ambientLight = new THREE.AmbientLight(0xffffff, 0.4)
+    this.scene.add(this.ambientLight)
+
+    if (this.debug.active) {
+      this.debugAmbient = this.debugFolder.addFolder('ambientLight')
+      this.debugAmbient
+        .add(this.ambientLight, 'intensity')
+        .min(0)
+        .max(1)
+        .name('ambient light intensity')
+    }
   }
 
   setSunlight() {
@@ -22,31 +38,32 @@ export default class Environment {
     this.sunlight.shadow.camera.far = 15
     this.sunlight.shadow.mapSize.set(1024, 1024)
     this.sunlight.shadow.normalBias = 0.05
-    this.sunlight.position.set(3.5, 2, 0.821)
+    this.sunlight.position.set(-2.329, 1.335, -2.722)
     this.scene.add(this.sunlight)
 
     //Debug
     if (this.debug.active) {
-      this.debugFolder
+      this.debugSunlight = this.debugFolder.addFolder('sunlight')
+      this.debugSunlight
         .add(this.sunlight, 'intensity')
         .name('sunlghtIntensity')
         .min(0)
         .max(10)
         .step(0.001)
 
-      this.debugFolder
+      this.debugSunlight
         .add(this.sunlight.position, 'x')
         .name('sunlghtX')
         .min(-5)
         .max(5)
         .step(0.001)
-      this.debugFolder
+      this.debugSunlight
         .add(this.sunlight.position, 'y')
         .name('sunlghtY')
         .min(-5)
         .max(5)
         .step(0.001)
-      this.debugFolder
+      this.debugSunlight
         .add(this.sunlight.position, 'z')
         .name('sunlghtZ')
         .min(-5)
