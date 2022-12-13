@@ -1,7 +1,8 @@
 import * as THREE from 'three'
+import Debug from '../../../utils/Debug'
 import App from '../../App'
 
-export default class Cube {
+export default class Pyramid {
   constructor() {
     this.app = new App()
     this.scene = this.app.scene
@@ -10,7 +11,7 @@ export default class Cube {
 
     //Debug
     if (this.debug.active) {
-      this.debugFolder = this.debug.ui.addFolder('cube')
+      this.debugFolder = this.debug.ui.addFolder('pyramid')
     }
 
     this.setGeometry()
@@ -19,7 +20,7 @@ export default class Cube {
   }
 
   setGeometry() {
-    this.geometry = new THREE.BoxGeometry(1, 1, 1)
+    this.geometry = new THREE.ConeGeometry(1, 1, 4)
   }
 
   setMaterial() {
@@ -34,10 +35,10 @@ export default class Cube {
 
     this.mesh.castShadow = true
     this.mesh.receiveShadow = true
-
+    //position
     this.mesh.position.y += 0.5
-    this.mesh.position.x = 1.8
-    this.mesh.position.z = -0.53
+    this.mesh.position.x = -1.76
+    this.mesh.position.z = 1.68
 
     //Debug
     if (this.debug.active) {
@@ -58,6 +59,6 @@ export default class Cube {
   }
 
   update() {
-    this.mesh.rotation.y = Math.sin(this.time.elapsed * 0.001)
+    this.mesh.rotation.y = Math.sin(this.time.elapsed * 0.0015 + 0.6)
   }
 }
