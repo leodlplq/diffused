@@ -1,6 +1,7 @@
 import * as THREE from 'three'
-import Debug from '../../../utils/Debug'
 import App from '../../App'
+
+import { objectMaterial } from '../../../utils/materials/objectMaterial'
 
 export default class Pyramid {
   constructor() {
@@ -24,9 +25,7 @@ export default class Pyramid {
   }
 
   setMaterial() {
-    this.material = new THREE.MeshStandardMaterial({
-      color: 'white',
-    })
+    this.material = objectMaterial()
   }
 
   setMesh() {

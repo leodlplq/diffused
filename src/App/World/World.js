@@ -4,6 +4,7 @@ import Floor from './elements/Floor'
 import Room from './elements/Room'
 import Environment from './Environement'
 import Pyramid from './elements/Pyramid'
+import Stump from './elements/Stump'
 
 export default class World {
   constructor() {
@@ -13,8 +14,8 @@ export default class World {
 
     //setup
     this.resources.on('ready', () => {
-      // this.floor = new Floor()
       this.room = new Room()
+      this.stump = new Stump()
       this.cube = new Cube()
       this.pyramid = new Pyramid()
       this.environment = new Environment()
@@ -22,7 +23,7 @@ export default class World {
   }
 
   update() {
-    this.cube.update()
-    this.pyramid.update()
+    if (this.cube) this.cube.update()
+    if (this.pyramid) this.pyramid.update()
   }
 }

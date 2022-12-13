@@ -1,5 +1,8 @@
 import * as THREE from 'three'
+
 import App from '../../App'
+
+import { objectMaterial } from '../../../utils/materials/objectMaterial'
 
 export default class Cube {
   constructor() {
@@ -23,9 +26,7 @@ export default class Cube {
   }
 
   setMaterial() {
-    this.material = new THREE.MeshStandardMaterial({
-      color: 'white',
-    })
+    this.material = objectMaterial()
   }
 
   setMesh() {
