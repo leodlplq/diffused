@@ -28,6 +28,13 @@ export default class Camera {
   setOrbitControls() {
     this.controls = new OrbitControls(this.instance, this.canvas)
     this.controls.enableDamping = true
+
+    //Limit displacement
+    //vertical span
+    this.controls.maxPolarAngle = Math.PI * 0.5 - 0.1
+    //horizontal span
+    this.controls.minAzimuthAngle = -0.004690102875165628
+    this.controls.maxAzimuthAngle = 1.6722480568658393
   }
 
   resize() {
@@ -37,5 +44,6 @@ export default class Camera {
 
   update() {
     this.controls.update()
+    console.log(this.controls.getAzimuthalAngle())
   }
 }
