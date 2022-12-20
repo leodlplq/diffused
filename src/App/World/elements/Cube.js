@@ -59,6 +59,6 @@ export default class Cube {
   }
 
   update() {
-    this.mesh.rotation.y = Math.sin(this.time.elapsed * 0.001)
+    // this.mesh.rotation.y = Math.sin(this.time.elapsed * 0.001)
   }
 }

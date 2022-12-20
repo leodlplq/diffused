@@ -17,7 +17,6 @@ export default class Stump {
     }
 
     //Setup
-    console.log(this.resources.items.stumpModel)
     this.resource = this.resources.items.stumpModel
 
     this.setMaterial()
@@ -56,6 +55,6 @@ export default class Stump {
     }
   }
   update() {
-    this.model.rotation.y = Math.sin(this.time.elapsed * 0.0012 + 0.25)
+    // this.model.rotation.y = Math.sin(this.time.elapsed * 0.0012 + 0.25)
   }
 }

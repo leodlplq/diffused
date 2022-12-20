@@ -69,6 +69,6 @@ export default class Pyramid {
   }
 
   update() {
-    this.mesh.rotation.y = Math.sin(this.time.elapsed * 0.0015 + 0.6)
+    // this.mesh.rotation.y = Math.sin(this.time.elapsed * 0.0015 + 0.6)
   }
 }

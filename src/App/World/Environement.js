@@ -16,6 +16,7 @@ export default class Environment {
     //Setup
     this.setAmbientLight()
     this.setSunlight()
+    this.setWallLight()
   }
 
   setAmbientLight() {
@@ -43,7 +44,7 @@ export default class Environment {
 
     //Debug
     if (this.debug.active) {
-      this.debugSunlight = this.debugFolder.addFolder('sunlight')
+      this.debugSunlight = this.debugFolder.addFolder('spotlight')
       this.debugSunlight
         .add(this.sunlight, 'intensity')
         .name('sunlghtIntensity')
@@ -69,6 +70,37 @@ export default class Environment {
         .min(-5)
         .max(5)
         .step(0.001)
+    }
+  }
+
+  setWallLight() {
+    this.wallLight = new THREE.PointLight('#FFFFFF', 1)
+    this.scene.add(this.wallLight)
+
+    //position
+    this.wallLight.position.set(-4, 5, -4)
+
+    if (this.debug.active) {
+      this.wallLightHelper = new THREE.PointLight(this.wallLight)
+      this.scene.add(this.wallLightHelper)
+      this.debugWallLight = this.debugFolder.addFolder('wallLight')
+      this.debugWallLight
+        .add(this.wallLight.position, 'x')
+        .min(-5)
+        .max(5)
+        .name('walllight X')
+      this.debugWallLight
+        .add(this.wallLight.position, 'y')
+        .min(-20)
+        .max(20)
+        .name('walllight Y')
+      this.debugWallLight
+        .add(this.wallLight.position, 'z')
+        .min(-5)
+        .max(5)
+        .name('walllight Z')
+
+      this.debugWallLight.add(this.wallLight, 'intensity').min(0).max(20)
     }
   }
 }
