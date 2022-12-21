@@ -31,3 +31,30 @@ body{
   text-decoration: none;
   font-family: "Kaftan";
 }
+
+.hud{
+  display: flex;
+  gap: 50px;
+
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  translate: -50% 0%;
+
+  height: 50px;
+}
+
+.hud > .arrow{
+  height: 65%;
+}
+
+.arrow > img{
+  height: 100%;
+}
+
+.hud > .circle{
+  height: 100%;
+  aspect-ratio: 1;
+  border: 1.5px solid white;
+  border-radius: 100px;
+}
