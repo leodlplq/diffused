@@ -25,7 +25,7 @@ export default class Room {
 
   setMaterials() {
     this.whiteMaterial = new THREE.MeshStandardMaterial({
-      color: 'white',
+      color: '#414141',
     })
 
     this.wallMaterial = new THREE.MeshStandardMaterial({

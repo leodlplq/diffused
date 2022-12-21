@@ -2,6 +2,6 @@ import * as THREE from 'three'
 
 export const objectMaterial = () => {
   return new THREE.MeshStandardMaterial({
-    color: 'white',
+    color: '#414141',
   })
 }

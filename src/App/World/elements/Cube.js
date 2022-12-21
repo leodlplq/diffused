@@ -3,6 +3,7 @@ import * as THREE from 'three'
 import App from '../../App'
 
 import { objectMaterial } from '../../../utils/materials/objectMaterial'
+import HUD from '../HUD'
 
 export default class Cube {
   constructor() {
@@ -19,6 +20,7 @@ export default class Cube {
     this.setGeometry()
     this.setMaterial()
     this.setMesh()
+    this.setHUD()
   }
 
   setGeometry() {
@@ -58,7 +60,12 @@ export default class Cube {
     }
   }
 
+  setHUD() {
+    this.hud = new HUD(this.mesh, true)
+  }
+
   update() {
+    this.hud.update()
     // this.mesh.rotation.y = Math.sin(this.time.elapsed * 0.001)
   }
 }

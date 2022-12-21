@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import { objectMaterial } from '../../../utils/materials/objectMaterial'
 
 import App from '../../App'
+import HUD from '../HUD'
 
 export default class Stump {
   constructor() {
@@ -21,6 +22,7 @@ export default class Stump {
 
     this.setMaterial()
     this.setModel()
+    this.setHUD()
   }
 
   setMaterial() {
@@ -54,7 +56,13 @@ export default class Stump {
         .name('position Z')
     }
   }
+
+  setHUD() {
+    this.hud = new HUD(this.model, false)
+  }
+
   update() {
+    this.hud.update()
     // this.model.rotation.y = Math.sin(this.time.elapsed * 0.0012 + 0.25)
   }
 }

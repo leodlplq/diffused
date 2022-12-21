@@ -9,6 +9,8 @@ import Resources from '../utils/Resources'
 
 import sources from './sources.js'
 
+import Stats from 'three/examples/jsm/libs/stats.module'
+
 let instance = null
 
 export default class App {
@@ -32,6 +34,12 @@ export default class App {
     this.camera = new Camera()
     this.renderer = new Renderer()
 
+    //stats debug
+    if (this.debug.active) {
+      this.stats = new Stats()
+      document.body.appendChild(this.stats.dom)
+    }
+
     //world
     this.world = new World()
 
@@ -50,6 +58,10 @@ export default class App {
   }
 
   update() {
+    if (this.debug.active) {
+      this.stats.update()
+    }
+
     this.camera.update()
     this.renderer.update()
     this.world.update()

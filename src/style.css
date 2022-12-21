@@ -58,3 +58,45 @@ body{
   border: 1.5px solid white;
   border-radius: 100px;
 }
+
+.labels{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  color: white;
+}
+
+.click-label{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  border: 2px solid white;
+  border-radius: 100px;
+
+  height: 40px;
+
+  transition: background .5s ease;
+
+}
+
+.click-label:hover{
+  
+
+  background-color: rgba(0, 0, 149, 0.4);
+}
+
+.click-label > img{
+  height: 100%;
+}
+
+.click-label > span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Kaftan';
+  opacity: 1;
+  width: 0;
+}

@@ -17,9 +17,10 @@ export default class Floor {
 
   setMaterial() {
     this.material = new THREE.MeshStandardMaterial({
-      color: 'white',
+      color: '#414141',
     })
   }
+
   setMesh() {
     this.mesh = new THREE.Mesh(this.geometry, this.material)
     this.mesh.rotation.x = -Math.PI * 0.5

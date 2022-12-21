@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import App from '../../App'
+import HUD from '../HUD'
 
 import { objectMaterial } from '../../../utils/materials/objectMaterial'
 
@@ -18,6 +19,7 @@ export default class Pyramid {
     this.setGeometry()
     this.setMaterial()
     this.setMesh()
+    this.setHUD()
   }
 
   setGeometry() {
@@ -68,7 +70,12 @@ export default class Pyramid {
     }
   }
 
+  setHUD() {
+    this.hud = new HUD(this.mesh, true)
+  }
+
   update() {
+    this.hud.update()
     // this.mesh.rotation.y = Math.sin(this.time.elapsed * 0.0015 + 0.6)
   }
 }
