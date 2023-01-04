@@ -10,6 +10,7 @@ import Resources from '../utils/Resources'
 import sources from './sources.js'
 
 import Stats from 'three/examples/jsm/libs/stats.module'
+import Mouse from '../utils/Mouse'
 
 let instance = null
 
@@ -28,11 +29,13 @@ export default class App {
     //Setup
     this.debug = new Debug()
     this.sizes = new Sizes()
+    this.mouse = new Mouse()
     this.time = new Time()
     this.scene = new THREE.Scene()
     this.resources = new Resources(sources)
     this.camera = new Camera()
     this.renderer = new Renderer()
+    this.raycaster = new THREE.Raycaster()
 
     //stats debug
     if (this.debug.active) {
