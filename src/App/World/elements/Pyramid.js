@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import App from '../../App'
 import HUD from '../HUD'
+import MeshHoverDetector from '../../../utils/MeshHoverDetector'
 
 import { objectMaterial } from '../../../utils/materials/objectMaterial'
 
@@ -11,6 +12,10 @@ export default class Pyramid {
     this.time = this.app.time
     this.debug = this.app.debug
 
+    this.raycaster = this.app.raycaster
+    this.camera = this.app.camera
+    this.mouse = this.app.mouse
+
     //Debug
     if (this.debug.active) {
       this.debugFolder = this.debug.ui.addFolder('pyramid')
@@ -20,6 +25,10 @@ export default class Pyramid {
     this.setMaterial()
     this.setMesh()
     this.setHUD()
+
+    this.setHovering()
+    this.meshHoverDetector.on('mouseentermesh', (e) => this.hover(e))
+    this.meshHoverDetector.on('mouseleavemesh', () => this.leaveHover())
   }
 
   setGeometry() {
@@ -74,8 +83,21 @@ export default class Pyramid {
     this.hud = new HUD(this.mesh, true)
   }
 
+  setHovering() {
+    this.meshHoverDetector = new MeshHoverDetector(this.mesh, this.raycaster)
+  }
+
+  hover(e) {
+    console.log('hover', e)
+  }
+
+  leaveHover() {
+    console.log('leave hover')
+  }
+
   update() {
     this.hud.update()
+    this.meshHoverDetector.update(this.mouse, this.camera.instance)
     // this.mesh.rotation.y = Math.sin(this.time.elapsed * 0.0015 + 0.6)
   }
 }
