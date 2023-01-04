@@ -53,10 +53,33 @@ body{
 }
 
 .hud > .circle{
+  --thickness: 1.5px;
   height: 100%;
   aspect-ratio: 1;
-  border: 1.5px solid white;
+  border: var(--thickness) solid white;
   border-radius: 100px;
+  transition: border 0.3s ease;
+}
+.hud > .circle.hovered{
+  --thickness: 5px;
+}
+
+.hud > .circle.clicked{
+  animation: circle-clicked 1s ease;
+}
+
+
+@keyframes circle-clicked {
+  0%{
+    border: var(--thickness) solid white;
+  }
+  50%{
+    border: 25px solid white;
+  }
+
+  100%{
+    border: var(--thickness) solid white;
+  }
 }
 
 .labels{

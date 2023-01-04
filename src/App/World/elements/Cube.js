@@ -16,6 +16,8 @@ export default class Cube {
     this.camera = this.app.camera
     this.mouse = this.app.mouse
 
+    this.hudElements = this.app.hudElements
+
     //Debug
     if (this.debug.active) {
       this.debugFolder = this.debug.ui.addFolder('cube')
@@ -29,7 +31,7 @@ export default class Cube {
     this.setHovering()
     this.meshHoverDetector.on('mouseentermesh', () => this.hover())
     this.meshHoverDetector.on('mouseleavemesh', () => this.leaveHover())
-    this.meshHoverDetector.on('mouseclickmesh', () => console.log('click'))
+    this.meshHoverDetector.on('mouseclickmesh', () => this.clickEvent())
   }
 
   setGeometry() {
@@ -84,10 +86,18 @@ export default class Cube {
 
   hover() {
     console.log('hover')
+    this.hudElements.circle.classList.add('hovered')
   }
 
   leaveHover() {
     console.log('leave hover')
+    this.hudElements.circle.classList.remove('hovered')
+  }
+
+  clickEvent() {
+    this.hudElements.circle.classList.remove('clicked') // reset animation
+    void this.hudElements.circle.offsetWidth // trigger reflow
+    this.hudElements.circle.classList.add('clicked') // start animation
   }
 
   update() {

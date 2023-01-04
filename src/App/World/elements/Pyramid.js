@@ -16,6 +16,8 @@ export default class Pyramid {
     this.camera = this.app.camera
     this.mouse = this.app.mouse
 
+    this.hudElements = this.app.hudElements
+
     //Debug
     if (this.debug.active) {
       this.debugFolder = this.debug.ui.addFolder('pyramid')
@@ -29,6 +31,7 @@ export default class Pyramid {
     this.setHovering()
     this.meshHoverDetector.on('mouseentermesh', () => this.hover())
     this.meshHoverDetector.on('mouseleavemesh', () => this.leaveHover())
+    this.meshHoverDetector.on('mouseclickmesh', () => this.clickEvent())
   }
 
   setGeometry() {
@@ -94,10 +97,18 @@ export default class Pyramid {
 
   hover() {
     console.log('hover')
+    this.hudElements.circle.classList.add('hovered')
   }
 
   leaveHover() {
     console.log('leave hover')
+    this.hudElements.circle.classList.remove('hovered')
+  }
+
+  clickEvent() {
+    this.hudElements.circle.classList.remove('clicked') // reset animation
+    void this.hudElements.circle.offsetWidth // trigger reflow
+    this.hudElements.circle.classList.add('clicked') // start animation
   }
 
   update() {

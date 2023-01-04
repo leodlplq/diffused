@@ -16,6 +16,8 @@ export default class Stump {
     this.camera = this.app.camera
     this.mouse = this.app.mouse
 
+    this.hudElements = this.app.hudElements
+
     //debug
     this.debug = this.app.debug
     if (this.debug.active) {
@@ -32,6 +34,7 @@ export default class Stump {
     this.setHovering()
     this.meshHoverDetector.on('mouseentermesh', () => this.hover())
     this.meshHoverDetector.on('mouseleavemesh', () => this.leaveHover())
+    this.meshHoverDetector.on('mouseclickmesh', () => this.clickEvent())
   }
 
   setMaterial() {
@@ -82,10 +85,18 @@ export default class Stump {
 
   hover() {
     console.log('hover')
+    this.hudElements.circle.classList.add('hovered')
   }
 
   leaveHover() {
     console.log('leave hover')
+    this.hudElements.circle.classList.remove('hovered')
+  }
+
+  clickEvent() {
+    this.hudElements.circle.classList.remove('clicked') // reset animation
+    void this.hudElements.circle.offsetWidth // trigger reflow
+    this.hudElements.circle.classList.add('clicked') // start animation
   }
 
   update() {

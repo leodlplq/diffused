@@ -23,6 +23,11 @@ export default class App {
     //global access (mainly for console)
     window.app = this
 
+    //HTML Elements
+    this.hudElements = {
+      circle: document.querySelector('.circle'),
+    }
+
     //Options
     this.canvas = _canvas
 
