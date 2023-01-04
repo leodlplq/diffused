@@ -3,7 +3,7 @@ import { objectMaterial } from '../../../utils/materials/objectMaterial'
 
 import App from '../../App'
 import HUD from '../HUD'
-import MeshHoverDetector from '../../../utils/MeshHoverDetector'
+import MeshEventDetector from '../../../utils/MeshEventDetector'
 
 export default class Stump {
   constructor() {
@@ -30,7 +30,7 @@ export default class Stump {
     this.setHUD()
 
     this.setHovering()
-    this.meshHoverDetector.on('mouseentermesh', (e) => this.hover(e))
+    this.meshHoverDetector.on('mouseentermesh', () => this.hover())
     this.meshHoverDetector.on('mouseleavemesh', () => this.leaveHover())
   }
 
@@ -72,14 +72,16 @@ export default class Stump {
 
   setHovering() {
     console.log(this.model)
-    this.meshHoverDetector = new MeshHoverDetector(
+    this.meshHoverDetector = new MeshEventDetector(
       this.model.children[0],
       this.raycaster,
+      this.camera.instance,
+      this.mouse,
     )
   }
 
-  hover(e) {
-    console.log('hover', e)
+  hover() {
+    console.log('hover')
   }
 
   leaveHover() {
@@ -88,7 +90,7 @@ export default class Stump {
 
   update() {
     this.hud.update()
-    this.meshHoverDetector.update(this.mouse, this.camera.instance)
+    this.meshHoverDetector.update()
     // this.model.rotation.y = Math.sin(this.time.elapsed * 0.0012 + 0.25)
   }
 }

@@ -4,7 +4,7 @@ import App from '../../App'
 
 import { objectMaterial } from '../../../utils/materials/objectMaterial'
 import HUD from '../HUD'
-import MeshHoverDetector from '../../../utils/MeshHoverDetector'
+import MeshEventDetector from '../../../utils/MeshEventDetector'
 
 export default class Cube {
   constructor() {
@@ -27,8 +27,9 @@ export default class Cube {
     this.setHUD()
 
     this.setHovering()
-    this.meshHoverDetector.on('mouseentermesh', (e) => this.hover(e))
+    this.meshHoverDetector.on('mouseentermesh', () => this.hover())
     this.meshHoverDetector.on('mouseleavemesh', () => this.leaveHover())
+    this.meshHoverDetector.on('mouseclickmesh', () => console.log('click'))
   }
 
   setGeometry() {
@@ -73,11 +74,16 @@ export default class Cube {
   }
 
   setHovering() {
-    this.meshHoverDetector = new MeshHoverDetector(this.mesh, this.raycaster)
+    this.meshHoverDetector = new MeshEventDetector(
+      this.mesh,
+      this.raycaster,
+      this.camera.instance,
+      this.mouse,
+    )
   }
 
-  hover(e) {
-    console.log('hover', e)
+  hover() {
+    console.log('hover')
   }
 
   leaveHover() {
@@ -86,7 +92,7 @@ export default class Cube {
 
   update() {
     this.hud.update()
-    this.meshHoverDetector.update(this.mouse, this.camera.instance)
+    this.meshHoverDetector.update()
 
     // this.mesh.rotation.y = Math.sin(this.time.elapsed * 0.001)
   }
