@@ -41,11 +41,9 @@ export default class MeshEventDetector extends EventEmitter {
       if (hovered && !this.hoverEventTriggered) {
         this.hoverEventTriggered = true
         this.trigger('mouseentermesh')
-        this.mesh.material.emissive.setHex(0xff0000)
       } else if (!hovered) {
         this.resetHover()
         this.trigger('mouseleavemesh')
-        this.mesh.material.emissive.setHex(0x000000)
       }
     }
   }
@@ -74,7 +72,6 @@ export default class MeshEventDetector extends EventEmitter {
     if (this.clicked) {
       this.resetClick()
       this.trigger('mouseclickmesh')
-      this.mesh.material.emissive.setHex(0x00ff00)
     }
   }
 }
