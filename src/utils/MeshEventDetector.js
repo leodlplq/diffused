@@ -40,9 +40,11 @@ export default class MeshEventDetector extends EventEmitter {
       this.hovered = hovered
       if (hovered && !this.hoverEventTriggered) {
         this.hoverEventTriggered = true
+        document.querySelector('body').style.cursor = 'pointer'
         this.trigger('mouseentermesh')
       } else if (!hovered) {
         this.resetHover()
+        document.querySelector('body').style.cursor = 'initial'
         this.trigger('mouseleavemesh')
       }
     }

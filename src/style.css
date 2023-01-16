@@ -23,7 +23,7 @@ body{
   width: 100%;
 }
 
-.more-informations{
+.more-informations, .close-btn{
   position: absolute;
   top: 50px;
   right: 50px;
@@ -123,3 +123,39 @@ body{
   opacity: 1;
   width: 0;
 }
+
+
+
+/** ABOUT */
+.about{
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(20, 15, 149);
+  color: white;
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 10000;
+  transition: top ease-in-out .2s;
+}
+
+.open{
+  top: 0;
+}
+
+.close-btn, .more-informations{
+  cursor: pointer;
+}
+
+.about-content{
+  position: absolute;
+  width: 90%;
+  height: 80%;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: scroll;
+  background: RED;
+}
+
+

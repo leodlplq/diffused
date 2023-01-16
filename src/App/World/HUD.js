@@ -35,7 +35,7 @@ export default class HUD extends EventEmitter {
     this.elem.classList.add('click-label')
     this.elem.innerHTML = `
       <img src="${info}" alt="Information">
-      <span>Click to interact</span>
+      <span>Click on mesh to interact</span>
     `
     this._container.appendChild(this.elem)
   }
@@ -44,7 +44,7 @@ export default class HUD extends EventEmitter {
     console.log('setAnimation')
     this.tl = gsap.timeline({ paused: true })
     this.tl.to(this.elem.querySelector('span'), 0.5, {
-      width: 200,
+      width: 250,
     })
     this.tl.from(this.elem.querySelector('span'), 0.3, {
       opacity: 0,
@@ -88,5 +88,12 @@ export default class HUD extends EventEmitter {
 
     // move the elem to that position
     this.elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`
+  }
+
+  destroy() {
+    gsap.to(this.elem, { opacity: 0, duration: 0.5 })
+    setTimeout(() => {
+      this.elem.style.display = 'none'
+    }, 500)
   }
 }

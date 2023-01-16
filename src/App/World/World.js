@@ -19,6 +19,10 @@ export default class World {
       this.cube = new Cube()
       this.pyramid = new Pyramid()
       this.environment = new Environment()
+
+      this.stump.meshHoverDetector.on('mouseclickmesh', () => this.destroy())
+      this.cube.meshHoverDetector.on('mouseclickmesh', () => this.destroy())
+      this.pyramid.meshHoverDetector.on('mouseclickmesh', () => this.destroy())
     })
   }
 
@@ -26,5 +30,11 @@ export default class World {
     if (this.cube) this.cube.update()
     if (this.pyramid) this.pyramid.update()
     if (this.stump) this.stump.update()
+  }
+
+  destroy() {
+    this.cube.hud.destroy()
+    this.stump.hud.destroy()
+    this.pyramid.hud.destroy()
   }
 }

@@ -4,9 +4,12 @@ import { objectMaterial } from '../../../utils/materials/objectMaterial'
 import App from '../../App'
 import HUD from '../HUD'
 import MeshEventDetector from '../../../utils/MeshEventDetector'
+import EventEmitter from '../../../utils/EventEmitter'
 
-export default class Stump {
+export default class Stump extends EventEmitter {
   constructor() {
+    super()
+
     this.app = new App()
     this.scene = this.app.scene
     this.resources = this.app.resources
