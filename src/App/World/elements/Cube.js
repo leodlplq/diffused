@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import OSC from 'osc-js'
 
 import App from '../../App'
 
@@ -98,6 +99,9 @@ export default class Cube {
     this.hudElements.circle.classList.remove('clicked') // reset animation
     void this.hudElements.circle.offsetWidth // trigger reflow
     this.hudElements.circle.classList.add('clicked') // start animation
+
+    let message = new OSC.Message('/test', 1)
+    this.app.osc.send(message)
   }
 
   update() {

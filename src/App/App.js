@@ -1,4 +1,6 @@
 import * as THREE from 'three'
+import OSC from 'osc-js'
+
 import Sizes from '../utils/Sizes'
 import Time from '../utils/Time'
 import Camera from './Camera'
@@ -41,6 +43,9 @@ export default class App {
     this.camera = new Camera()
     this.renderer = new Renderer()
     this.raycaster = new THREE.Raycaster()
+
+    this.osc = new OSC()
+    this.osc.open()
 
     //stats debug
     if (this.debug.active) {
